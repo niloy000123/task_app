@@ -1,5 +1,10 @@
+import 'dart:io';
+import 'dart:isolate';
+
 import 'package:flutter/material.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:task_app/view/home/component/video_card.dart';
+import 'package:video_thumbnail/video_thumbnail.dart';
 import '../../../component/widgets.dart';
 import '../../../model/app_loding.dart';
 import '../../../utils/constants.dart';

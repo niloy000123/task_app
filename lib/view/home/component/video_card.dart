@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:task_app/utils/size_config.dart';
 import 'package:video_player/video_player.dart';
-import 'package:video_thumbnail/video_thumbnail.dart';
 import '../../../utils/constants.dart';
 
 class VideoCard extends StatefulWidget {
@@ -23,7 +21,6 @@ class _VideoCardState extends State<VideoCard> {
   @override
   void initState() {
     _controller = VideoPlayerController.network(widget.image);
-    //_controller = VideoPlayerController.asset("videos/sample_video.mp4");
     _initializeVideoPlayerFuture = _controller.initialize();
     _controller.setLooping(true);
     _controller.setVolume(1.0);

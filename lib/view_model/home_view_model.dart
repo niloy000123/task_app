@@ -5,6 +5,9 @@ import '../repo/api_status.dart';
 import '../repo/home_serviec.dart';
 
 class HomeViewModel extends ChangeNotifier {
+  int _currentVideoPlayed = -1;
+
+  int get currentVideoPlayed => _currentVideoPlayed;
   List<ProductModel> _productList = [];
   ServiceError? _productError;
   bool _loading = false;
@@ -14,6 +17,11 @@ class HomeViewModel extends ChangeNotifier {
 
   setLoding(bool loading) {
     _loading = loading;
+    notifyListeners();
+  }
+
+  setCurrentVideoPlayed(int index) {
+    _currentVideoPlayed = index;
     notifyListeners();
   }
 

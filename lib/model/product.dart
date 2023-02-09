@@ -41,15 +41,15 @@
 //   }
 // }
 
-class ProductModel {
+class VideosModel {
   int? id;
   String? caption;
   String? videoUrl;
   String? createdAt;
 
-  ProductModel({this.id, this.caption, this.videoUrl, this.createdAt});
+  VideosModel({this.id, this.caption, this.videoUrl, this.createdAt});
 
-  ProductModel.fromJson(Map<String, dynamic> json) {
+  VideosModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     caption = json['caption'];
     videoUrl = json['video_url'];

@@ -1,10 +1,5 @@
-import 'dart:io';
-import 'dart:isolate';
-
 import 'package:flutter/material.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:task_app/view/home/component/video_tham_card.dart';
-import 'package:video_thumbnail/video_thumbnail.dart';
 import '../../../component/widgets.dart';
 import '../../../model/app_loding.dart';
 import '../../../utils/constants.dart';
@@ -23,11 +18,11 @@ class VideosList extends StatelessWidget {
   Widget build(BuildContext context) {
     if (homeProvider.loading) {
       return const AppLoading(
-        title: 'Videos Loading...',
+        title: 'Videos are Loading...',
       );
     }
-    if (homeProvider.productError != null) {
-      return errorWidget(homeProvider.productError!.message.toString());
+    if (homeProvider.videoError != null) {
+      return errorWidget(homeProvider.videoError!.message.toString());
     }
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,

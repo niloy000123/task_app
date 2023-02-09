@@ -28,6 +28,12 @@ class _VideoCardState extends State<VideoCard> {
   }
 
   @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
@@ -46,7 +52,22 @@ class _VideoCardState extends State<VideoCard> {
                     }
                   });
                 },
-                child: VideoPlayer(_controller));
+                child: SizedBox(
+                  height: double.infinity,
+                  child: Stack(
+                    alignment: Alignment.bottomCenter,
+                    children: [
+                      VideoPlayer(_controller),
+                      VideoProgressIndicator(_controller,
+                          allowScrubbing: true,
+                          colors: const VideoProgressColors(
+                            backgroundColor: Colors.redAccent,
+                            playedColor: Colors.green,
+                            bufferedColor: Colors.purple,
+                          ))
+                    ],
+                  ),
+                ));
           } else {
             return Center(
               child: CircularProgressIndicator(),

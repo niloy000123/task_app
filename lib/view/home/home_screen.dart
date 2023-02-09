@@ -19,7 +19,7 @@ class HomeScreen extends StatelessWidget {
   AppBar homeAppbar() {
     return AppBar(
       title: Text(
-        'Demo Store',
+        'M360ICT',
         style: TextStyle(
             color: kPrimaryColor,
             fontSize: getProportionateScreenWidth(FONT_L),

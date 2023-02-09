@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'demo-parallaxlogic',
+        title: 'M360ICT',
         theme: theme(),
         initialRoute: HomeScreen.routeName,
         routes: routes,

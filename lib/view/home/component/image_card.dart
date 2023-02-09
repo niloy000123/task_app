@@ -32,7 +32,7 @@ class _ImageCardState extends State<ImageCard> {
 
   generateThumbnail() async {
     try {
-      var a = await VideoThumbnail.thumbnailFile(
+      await VideoThumbnail.thumbnailFile(
         video: widget.image.toString(),
         thumbnailPath: (await getTemporaryDirectory()).path,
         imageFormat: ImageFormat.WEBP,
@@ -54,13 +54,16 @@ class _ImageCardState extends State<ImageCard> {
   Widget build(BuildContext context) {
     HomeViewModel homeProvider = Provider.of<HomeViewModel>(context);
 
-    return Stack(
-      children: [
-        SizedBox(
-          width: double.infinity,
-          height: getProportionateScreenWidth(PADING_2XL_SIZE * 8),
-          child: value == null
-              ? Center(
+    return Container(
+      width: double.infinity,
+      height: getProportionateScreenWidth(PADING_2XL_SIZE * 8),
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(
+              getProportionateScreenWidth(PADING_M_SIZE))),
+      child: Stack(
+        children: [
+          value == null
+              ? const Center(
                   child: CircularProgressIndicator(),
                 )
               : value is String
@@ -70,13 +73,13 @@ class _ImageCardState extends State<ImageCard> {
                       width: double.infinity,
                       height: double.infinity,
                     )
-                  : Image.asset('assets/images/image_default.png',
-                      fit: BoxFit.cover),
-        ),
-        SizedBox(
-          width: double.infinity,
-          height: getProportionateScreenWidth(PADING_2XL_SIZE * 8),
-          child: GestureDetector(
+                  : Image.asset(
+                      'assets/images/image_default.png',
+                      fit: BoxFit.cover,
+                      width: double.infinity,
+                      height: double.infinity,
+                    ),
+          GestureDetector(
             onTap: () {
               homeProvider.setCurrentVideoPlayed(widget.index);
             },
@@ -87,8 +90,8 @@ class _ImageCardState extends State<ImageCard> {
               ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

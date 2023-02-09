@@ -8,12 +8,12 @@ class HomeViewModel extends ChangeNotifier {
   int _currentVideoPlayed = -1;
 
   int get currentVideoPlayed => _currentVideoPlayed;
-  List<ProductModel> _productList = [];
-  ServiceError? _productError;
+  List<VideosModel> _videoList = [];
+  ServiceError? _videoError;
   bool _loading = false;
   bool get loading => _loading;
-  ServiceError? get productError => _productError;
-  List<ProductModel>? get productList => _productList;
+  ServiceError? get videoError => _videoError;
+  List<VideosModel>? get productList => _videoList;
 
   setLoding(bool loading) {
     _loading = loading;
@@ -25,28 +25,28 @@ class HomeViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  setFeaturedProduct(List<ProductModel> list) {
-    _productList = list;
+  setVideoList(List<VideosModel> list) {
+    _videoList = list;
   }
 
-  setProductError(ServiceError userError) {
-    _productError = userError;
+  setVideoError(ServiceError userError) {
+    _videoError = userError;
   }
 
   HomeViewModel() {
-    getProducts();
+    getVideos();
   }
 
-  getProducts() async {
+  getVideos() async {
     setLoding(true);
     var response = await HomeServices.getProduct();
     if (response is Success) {
-      setFeaturedProduct(response.responce as List<ProductModel>);
+      setVideoList(response.responce as List<VideosModel>);
     }
     if (response is Failure) {
       ServiceError productError =
           ServiceError(code: response.code, message: response.errorResponce);
-      setProductError(productError);
+      setVideoError(productError);
     }
     setLoding(false);
   }

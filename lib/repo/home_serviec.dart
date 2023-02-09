@@ -15,8 +15,8 @@ class HomeServices {
       print("hhhhhhhh---------");
       var body = json.decode(response.body);
       if (response.statusCode == 200) {
-        List<ProductModel> productList = (body["data"] as List)
-            .map((data) => ProductModel.fromJson(data))
+        List<VideosModel> productList = (body["data"] as List)
+            .map((data) => VideosModel.fromJson(data))
             .toList();
         return Success(responce: productList);
       } else {

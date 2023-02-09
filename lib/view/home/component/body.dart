@@ -26,9 +26,6 @@ class Body extends StatelessWidget {
                   fontWeight: FontWeight.w900,
                   letterSpacing: 1),
             ),
-            customText(
-                text: ' To Our Store',
-                fontSize: getProportionateScreenWidth(FONT_XS)),
             SizedBox(
               height: getProportionateScreenWidth(PADING_2XL_SIZE),
             ),

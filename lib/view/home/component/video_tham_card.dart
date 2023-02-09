@@ -23,25 +23,28 @@ class VideoThamCard extends StatelessWidget {
     return GestureDetector(
       onTap: press,
       child: Card(
+        shape: RoundedRectangleBorder(
+          borderRadius:
+              BorderRadius.circular(getProportionateScreenWidth(PADING_S_SIZE)),
+        ),
         elevation: 2,
-        child: Container(
+        child: SizedBox(
           width: double.infinity,
-          // height: getProportionateScreenWidth(PADING_2XL_SIZE * 7),
-          decoration: BoxDecoration(
+          child: ClipRRect(
             borderRadius: BorderRadius.circular(
                 getProportionateScreenWidth(PADING_S_SIZE)),
-          ),
-          child: Column(
-            children: [
-              homeProvider.currentVideoPlayed == index
-                  ? VideoCard(
-                      image:
-                          homeProvider.productList![index].videoUrl.toString())
-                  : ImageCard(
-                      index: index,
-                      image:
-                          homeProvider.productList![index].videoUrl.toString()),
-            ],
+            child: Column(
+              children: [
+                homeProvider.currentVideoPlayed == index
+                    ? VideoCard(
+                        image: homeProvider.productList![index].videoUrl
+                            .toString())
+                    : ImageCard(
+                        index: index,
+                        image: homeProvider.productList![index].videoUrl
+                            .toString()),
+              ],
+            ),
           ),
         ),
       ),

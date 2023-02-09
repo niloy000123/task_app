@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:task_app/view/home/component/image_card.dart';
 import 'package:task_app/view/home/component/video_card.dart';
 import 'package:task_app/view_model/home_view_model.dart';
-import '../../../model/product.dart';
 import '../../../utils/constants.dart';
 import '../../../utils/size_config.dart';
 
@@ -35,11 +34,16 @@ class VideoThamCard extends StatelessWidget {
                 getProportionateScreenWidth(PADING_S_SIZE)),
             child: Column(
               children: [
+                //when select item and index are equal
                 homeProvider.currentVideoPlayed == index
-                    ? VideoCard(
+                    ?
+                    // video player contaier
+                    VideoCard(
                         image: homeProvider.productList![index].videoUrl
                             .toString())
-                    : ImageCard(
+                    :
+                    // videos thumbnail container
+                    ImageCard(
                         index: index,
                         image: homeProvider.productList![index].videoUrl
                             .toString()),

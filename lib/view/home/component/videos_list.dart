@@ -16,11 +16,13 @@ class VideosList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //loading whern fetching data
     if (homeProvider.loading) {
       return const AppLoading(
         title: 'Videos are Loading...',
       );
     }
+    //error whern problem on fetching data
     if (homeProvider.videoError != null) {
       return errorWidget(homeProvider.videoError!.message.toString());
     }
@@ -31,6 +33,7 @@ class VideosList extends StatelessWidget {
             text: "Videos",
             fontSize: getProportionateScreenWidth(FONT_L),
             fontWeight: FontWeight.bold),
+        // here all the video are genarated...
         ...List.generate(
             homeProvider.productList!.length,
             (index) => VideoThamCard(

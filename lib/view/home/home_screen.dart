@@ -11,6 +11,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Scaffold(
+      //custom appbar
       appBar: homeAppbar(),
       body: const Body(),
     );

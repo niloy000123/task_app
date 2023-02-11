@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:task_app/view/home/component/videos_list.dart';
-import '../../../component/widgets.dart';
 import '../../../utils/constants.dart';
 import '../../../utils/size_config.dart';
 import '../../../view_model/home_view_model.dart';

@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:task_app/utils/size_config.dart';
-import 'package:video_player/video_player.dart';
 import 'package:video_thumbnail/video_thumbnail.dart';
 import '../../../utils/constants.dart';
 import '../../../view_model/home_view_model.dart';
@@ -23,7 +22,7 @@ class ImageCard extends StatefulWidget {
 }
 
 class _ImageCardState extends State<ImageCard> {
-  var value;
+  dynamic _thumbnailImage;
   @override
   void initState() {
     super.initState();
@@ -40,12 +39,12 @@ class _ImageCardState extends State<ImageCard> {
         quality: 75,
       ).then((v) {
         setState(() {
-          value = v;
+          _thumbnailImage = v;
         });
       });
     } catch (e) {
       setState(() {
-        value = false;
+        _thumbnailImage = false;
       });
     }
   }
@@ -62,18 +61,20 @@ class _ImageCardState extends State<ImageCard> {
               getProportionateScreenWidth(PADING_M_SIZE))),
       child: Stack(
         children: [
-          value == null
+          _thumbnailImage == null
               ? const Center(
                   child: CircularProgressIndicator(),
                 )
-              : value is String
-                  ? Image.file(
-                      File(value),
+              : _thumbnailImage is String
+                  ? // Thumbnail load
+                  Image.file(
+                      File(_thumbnailImage),
                       fit: BoxFit.cover,
                       width: double.infinity,
                       height: double.infinity,
                     )
-                  : Image.asset(
+                  : // if Thumbnail can not genarate set default image as thumnales.
+                  Image.asset(
                       'assets/images/image_default.png',
                       fit: BoxFit.cover,
                       width: double.infinity,
@@ -81,12 +82,13 @@ class _ImageCardState extends State<ImageCard> {
                     ),
           GestureDetector(
             onTap: () {
+              //set video play
               homeProvider.setCurrentVideoPlayed(widget.index);
             },
-            child: const Center(
+            child: Center(
               child: Icon(
                 Icons.play_circle_fill_outlined,
-                size: 40.0,
+                size: getProportionateScreenWidth(PADING_2XL_SIZE * 2),
               ),
             ),
           ),

@@ -44,6 +44,7 @@ class _VideoCardState extends State<VideoCard> {
           if (snapshot.connectionState == ConnectionState.done) {
             return GestureDetector(
                 onTap: () {
+                  // press to switch play and pause
                   setState(() {
                     if (_controller.value.isPlaying) {
                       _controller.pause();
@@ -57,7 +58,9 @@ class _VideoCardState extends State<VideoCard> {
                   child: Stack(
                     alignment: Alignment.bottomCenter,
                     children: [
+                      // video player
                       VideoPlayer(_controller),
+                      // video progress bar
                       VideoProgressIndicator(_controller,
                           allowScrubbing: true,
                           colors: const VideoProgressColors(
@@ -69,7 +72,7 @@ class _VideoCardState extends State<VideoCard> {
                   ),
                 ));
           } else {
-            return Center(
+            return const Center(
               child: CircularProgressIndicator(),
             );
           }

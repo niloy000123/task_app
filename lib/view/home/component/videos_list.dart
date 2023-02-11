@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:task_app/view/home/component/video_tham_card.dart';
+import 'package:task_app/view/home/component/video_thumbnail_card.dart';
 import '../../../component/widgets.dart';
 import '../../../model/app_loding.dart';
 import '../../../utils/constants.dart';
@@ -36,16 +36,14 @@ class VideosList extends StatelessWidget {
         // here all the video are genarated...
         ...List.generate(
             homeProvider.productList!.length,
-            (index) => VideoThamCard(
+            (index) => VideoThumbnailCard(
                   homeProvider: homeProvider,
                   index: index,
                   press: () {
+                    //set video play
                     homeProvider.setCurrentVideoPlayed(index);
                   },
                 )),
-        SizedBox(
-          height: getProportionateScreenWidth(PADING_M_SIZE),
-        ),
       ],
     );
   }

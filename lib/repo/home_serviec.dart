@@ -3,16 +3,15 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:http/http.dart' as http;
-import 'package:task_app/model/product.dart';
+import 'package:task_app/model/model_video.dart';
 import 'package:task_app/repo/api_status.dart';
 
 import '../utils/constants.dart';
 
 class HomeServices {
-  static Future<Object> getProduct() async {
+  static Future<Object> getVideoList() async {
     try {
       final response = await http.get(Uri.parse(GET_PRODUCTS));
-      print("hhhhhhhh---------");
       var body = json.decode(response.body);
       if (response.statusCode == 200) {
         List<VideosModel> productList = (body["data"] as List)

@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import '../model/product.dart';
+import '../model/model_video.dart';
 import '../model/users_error.dart';
 import '../repo/api_status.dart';
 import '../repo/home_serviec.dart';
@@ -15,7 +15,7 @@ class HomeViewModel extends ChangeNotifier {
   ServiceError? get videoError => _videoError;
   List<VideosModel>? get productList => _videoList;
 
-  setLoding(bool loading) {
+  _setLoding(bool loading) {
     _loading = loading;
     notifyListeners();
   }
@@ -25,29 +25,29 @@ class HomeViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  setVideoList(List<VideosModel> list) {
+  _setVideoList(List<VideosModel> list) {
     _videoList = list;
   }
 
-  setVideoError(ServiceError userError) {
+  _setVideoError(ServiceError userError) {
     _videoError = userError;
   }
 
   HomeViewModel() {
-    getVideos();
+    _getVideos();
   }
 
-  getVideos() async {
-    setLoding(true);
-    var response = await HomeServices.getProduct();
+  _getVideos() async {
+    _setLoding(true);
+    var response = await HomeServices.getVideoList();
     if (response is Success) {
-      setVideoList(response.responce as List<VideosModel>);
+      _setVideoList(response.responce as List<VideosModel>);
     }
     if (response is Failure) {
       ServiceError productError =
           ServiceError(code: response.code, message: response.errorResponce);
-      setVideoError(productError);
+      _setVideoError(productError);
     }
-    setLoding(false);
+    _setLoding(false);
   }
 }

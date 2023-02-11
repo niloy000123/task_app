@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
-
 import 'package:http/http.dart' as http;
 import 'package:task_app/model/model_video.dart';
 import 'package:task_app/repo/api_status.dart';
@@ -13,7 +12,7 @@ class HomeServices {
     try {
       final response = await http.get(Uri.parse(GET_PRODUCTS));
       var body = json.decode(response.body);
-      if (response.statusCode == 200) {
+      if (response.statusCode == 200 && body['success'] == true) {
         List<VideosModel> productList = (body["data"] as List)
             .map((data) => VideosModel.fromJson(data))
             .toList();

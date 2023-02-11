@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:task_app/component/widgets.dart';
 import 'package:task_app/view/home/component/image_card.dart';
 import 'package:task_app/view/home/component/video_card.dart';
@@ -24,7 +25,7 @@ class VideoThumbnailCard extends StatelessWidget {
       onTap: press,
       child: Container(
         margin:
-            EdgeInsets.only(bottom: getProportionateScreenWidth(PADING_M_SIZE)),
+            EdgeInsets.only(bottom: getProportionateScreenWidth(PADING_L_SIZE)),
         padding: EdgeInsets.symmetric(
             horizontal: getProportionateScreenWidth(PADING_S_SIZE),
             vertical: getProportionateScreenWidth(PADING_M_SIZE)),
@@ -65,10 +66,19 @@ class VideoThumbnailCard extends StatelessWidget {
             SizedBox(
               height: getProportionateScreenWidth(PADING_S_SIZE),
             ),
+            //caption
             customText(
                 textAlign: TextAlign.left,
                 text:
-                    "Caption : ${homeProvider.productList![index].caption.toString()}")
+                    "Caption : ${homeProvider.productList![index].caption.toString()}"),
+            SizedBox(
+              height: getProportionateScreenWidth(PADING_S_SIZE / 2),
+            ),
+            //time
+            customText(
+                textAlign: TextAlign.left,
+                text:
+                    "Create at :${formateDate(homeProvider.productList![index].createdAt.toString())}")
           ],
         ),
       ),

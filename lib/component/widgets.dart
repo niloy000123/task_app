@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import '../utils/constants.dart';
 import '../utils/size_config.dart';
 
@@ -39,4 +40,12 @@ Widget errorWidget(String text) {
         horizontal: getProportionateScreenWidth(PADING_2XL_SIZE)),
     child: customText(text: text, color: kPrimaryOrange),
   ));
+}
+
+String formateDate(String date) {
+  DateTime parseDate = DateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").parse(date);
+  var inputDate = DateTime.parse(parseDate.toString());
+  var outputFormat = DateFormat('dd-mm-yyyy hh:mm');
+  String outputDate = outputFormat.format(inputDate);
+  return outputDate;
 }
